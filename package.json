@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "db-migrate": "^0.11.14",
+    "db-migrate-mysql": "^2.3.2",
+    "mysql": "^2.18.1"
+  },
+  "scripts": {
+    "migrate": "node node_modules/db-migrate/bin/db-migrate"
+  },
+ 
+  "name": "project02",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/akkm9120/project02.git",
+  "author": "Aung Kyaw  Min <mail4akkm@gmail.com>",
+  "license": "MIT"
+}
