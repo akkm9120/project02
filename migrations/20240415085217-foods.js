@@ -15,17 +15,19 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-        return db.createTable('food',{
-            id: { type: 'int', primaryKey:true, autoIncrement:true, unsigned: true},
-            food_name: { type: 'string', length:100, notNull:true},
-            cost: 'decimal(10,2)', 
-            description:'text',
-            availability: 'boolean'
-        })
+  return db.createTable('foods', {
+      id: { type: 'int', primaryKey:true, notNull:true, autoIncrement:true, unsigned: true },
+      food_name: { type: 'string', length:100, notNull:true },
+      cost: { type: 'decimal', precision: 10, scale: 2 },
+      description: 'text',
+      availability: { type: 'boolean', notNull: true, defaultValue: true },
+      
+  });
 };
 
+
 exports.down = function(db) {
-  return db.dropTable('products');
+  return db.dropTable('foods');
 };
 
 exports._meta = {
