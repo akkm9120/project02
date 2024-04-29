@@ -15,18 +15,27 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.createTable('burger', {
-      id: { type: 'int', primaryKey:true, notNull:true, autoIncrement:true, unsigned: true },
-      item_name: { type: 'string', length:100, notNull:true },
-      cost: { type: 'decimal', precision: 10, scale: 2 },
-      description: 'text',
-      availability: { type: 'boolean', notNull: true, defaultValue: true }
+  return db.createTable('pizza',{
+    'id' : {
+      'type': 'int',
+      'primaryKey' : true,
+      'autoIncrement': true, 
+      'unsigned': true 
+    },
+    'pizza_name': {
+      'type':'string',
+      'length': 100,
+      'notNull': true
+    },
+    'cost': {
+      'type':'int',
+      'unsigned': true
+    },
   });
 };
 
-
 exports.down = function(db) {
-  return db.dropTable('foods');
+  return db.dropTable('pizza');
 };
 
 exports._meta = {
