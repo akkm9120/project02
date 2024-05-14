@@ -16,4 +16,4 @@ router.get('/contact-us', function(req,res){
 })
 
 // export out the router object so that `index.js` might use it
-module.exports = router
+module.exports = router;

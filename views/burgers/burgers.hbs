@@ -19,6 +19,7 @@
             Description
         </th>
         <th>Availability</th>
+        <th>IMG</th>
     </thead>
     {{#each burgers}}
     <tr>
@@ -37,10 +38,18 @@
         <td>
             {{this.availability}}
         </td>
+        <td>{{this.image_url}}</td>
     </tr>
     {{/each}}
 </table>
 
+
+<a href="/burger/add" class="btn btn-primary mt-3" >Add Product</a>
+
 {{/block}}
 
 {{/extends}}
+
+
+ {{#extends 'footer'}}
+ {{/extends}}

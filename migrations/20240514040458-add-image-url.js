@@ -14,20 +14,16 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
+
 exports.up = function(db) {
-  return db.createTable('burger', {
-      id: { type: 'int', primaryKey:true, notNull:true, autoIncrement:true, unsigned: true },
-      item_name: { type: 'string', length:100, notNull:true },
-      cost: { type: 'decimal', precision: 10, scale: 2 },
-      description: 'text',
- 
-      availability: { type: 'boolean', notNull: true, defaultValue: true }
+  return db.addColumn('burger', 'image_url',{
+    'type': 'string',
+    'length': 255
   });
 };
 
-
 exports.down = function(db) {
-  return db.dropTable('burger');
+  return db.removeColumn('burger', 'image_url');
 };
 
 exports._meta = {

@@ -1,7 +1,41 @@
 {{#extends 'base'}}
+{{#block 'content'}}
+ <main class="container my-5">
+    <div class="row">
+      <div class="col main-content">
+        <h1 class="display-4 fw-bold mb-4" style="color: #eaa628; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+          Mouthwatering Burgers, Savory Pizzas, and Refreshing Drinks</h1>
+        <p class="lead" style="font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #333;">Satisfy your cravings
+          with our menu of high-quality ingredients and expert preparation. Indulge in the perfect balance of flavors
+          and textures, from our juicy burgers to our delectable pizzas and thirst-quenching beverages.</p>
+      </div>
+      <div class="d-flex gap-2 mt-4">
+          <a href="/burger" class="btn btn-info">Order Burgers</a>
+          <a href="#" class="btn btn-info">Order Pizzas</a>
+          <a href="#" class="btn btn-info">Order Drinks</a>
+        </div>
+    </div>
+  </main>
 
-{{#block "content"}}
-<h1>Welcome to Home Page.</h1>
-{{/block}}
+  <div class="container d-flex justify-content-between align-items-center py-3 rounded-pill" id="threebtns">
+    <a href="#/index.html" target="_blank" rel="noopener noreferrer"
+      class="ms-5 d-flex align-items-center text-decoration-none">
+      <i class="bi bi-house-fill me-2"></i> <span class="fw-bold">Brand Name</span>
+    </a>
+    <div class="d-flex gap-2">
+      <a href="/user/" target="_blank" rel="noopener noreferrer" class="btn btn-light">
+        <i class="bi bi-person-fill"></i> Login
+      </a>
+      <a href="/wishlist.html" target="_blank" rel="noopener noreferrer" class="btn btn-light">
+        <i class="bi bi-heart-fill"></i> Your Wishlist
+      </a>
+      <a href="/index-2.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary me-5">
+        <i class="bi bi-cart-fill"></i> My Cart <span class="badge bg-danger rounded-pill">2</span>
+      </a>
+    </div>
+  </div>
+  {{/block}}
+  {{/extends}}
 
-{{/extends}}
+  {{#extends 'footer'}}
+  {{/extends}}
