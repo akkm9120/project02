@@ -21,42 +21,43 @@ router.get('/add', async function (req, res) {
     const burgerForm = createBurgerForm();
     res.render('burgers/add', {
         form: burgerForm.toHTML(bootstrapField),
-        cloudinaryName: process.env.CLOUDINARY_NAME,
-        cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
-        cloudinaryPreset: process.env.CLOUDINARY_UPLOAD_PRESET
     })
 });
 
-
-router.post('/add-product', async function (req, res) {
-
-    // get all the categories
-    const allCategories = await Category.fetchAll().map(category => [category.get('id'), category.get('name')]);
-
-    // get all the tags 
-    const allTags = await Tag.fetchAll().map(t => [t.get('id'), t.get('name')]);
-
+router.post('/add', function(req,res){
     // create the product form object using caolan form
-    const productForm = createProductForm(allCategories, allTags);
+    const burgerForm = createBurgerForm();
     // using the form object to handle the request
-    productForm.handle(req, {
-        'success': async function (form) {
-          const product = await dataLayer.createProduct(form.data);
+    burgerForm.handle(req, {
+        'success': async function(form) {
+            // the forms has no error
+            // to access each field in the submitted form
+            // we use form.data.<fieldname>
 
-            // a flash message can only be set before a redirect
-            // req.flash has two arugments: 
-            // 1st: the type of message to show (it's up to the developer to define)
-            // 2nd: what message to show
-            // req.flash will add a new flash message to the current session
-            req.flash('success_messages', 'New product has been created successfully');
-            res.redirect("/products/");
+
+            // create an instance of the Product model
+            // an instance of a product is one row in the corresponding table
+            const product = new Burger();
+            product.set('item_name', form.data.item_name)
+            product.set('cost', form.data.cost);
+            product.set('description', form.data.description);
+            product.set('availability', form.data.availability);
+            product.set('image_url',form.data.img_url);
+            // save the product to the database
+            await product.save();
+
+            // same as:
+            // INSERT INTO products (name, cost, description)
+            // VALUES (${form.data.name}, ${form.data.cost}, ${form.data.description})
+            res.redirect("/burger");
         },
-        'empty': function (form) {
-            res.render('products/create', {
-                form: productForm.toHTML(bootstrapField)
+        'empty': function(form) {
+            // the user submitted an empty form
+            res.render('burgers/add', {
+                form: burgerForm.toHTML(bootstrapField)
             })
         },
-        'error': function (form) {
+        'error': function(form) {
             // the user submitted a form with error
             res.render('burgers/add', {
                 form: form.toHTML(bootstrapField)
